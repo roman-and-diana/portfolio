@@ -10,7 +10,13 @@
     --font-body: 'Manrope', sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    /* ПРИБИРАЄМО СИНЮ ОБВОДКУ НА МОБІЛЬНОМУ */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -117,14 +123,16 @@ ul { list-style: none; }
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .marquee-content {
-    display: flex; gap: 60px; animation: scroll 25s linear infinite;
+    display: flex; gap: 60px; 
+    /* ПРИШВИДШЕНО ДО 12s */
+    animation: scroll 12s linear infinite;
 }
 .marquee-content span {
     font-family: var(--font-header);
     font-size: 1.4rem;
     text-transform: uppercase;
     color: rgba(255,255,255,0.8);
-    text-shadow: 0 0 10px rgba(255,255,255,0.1);
+    text-shadow: 0 0 10px rgba(255,255,255,0.1); 
 }
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -171,7 +179,7 @@ ul { list-style: none; }
     overflow: hidden;
     background: #000;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    z-index: 1;
+    z-index: 1; 
 }
 .phone-mockup::before {
     content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -184,16 +192,19 @@ ul { list-style: none; }
     width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
-/* --- CUSTOM VIDEO CONTROLS (Оновлені) --- */
+/* --- CUSTOM VIDEO CONTROLS --- */
 .video-controls {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: 10;
     display: flex; flex-direction: column; justify-content: space-between;
     opacity: 0; transition: opacity 0.3s;
-    background: rgba(0,0,0,0.3); /* Трохи темніше */
+    background: rgba(0,0,0,0.3);
 }
-.phone-mockup:hover .video-controls { opacity: 1; }
+.phone-mockup:hover .video-controls, 
+.phone-mockup.is-playing .video-controls { /* Показуємо на мобільному, якщо грає */
+    opacity: 1; 
+}
 
 /* Центральна кнопка */
 .center-play-btn {
@@ -222,7 +233,7 @@ ul { list-style: none; }
     display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
 }
 
-/* --- НОВИЙ СЛАЙДЕР ГУЧНОСТІ --- */
+/* Слайдер гучності */
 .volume-container {
     display: flex;
     align-items: center;
@@ -233,31 +244,18 @@ ul { list-style: none; }
     backdrop-filter: blur(4px);
 }
 
-/* SVG Іконка */
-.mute-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: #fff;
-    display: block;
-}
+.mute-btn svg { width: 18px; height: 18px; fill: #fff; display: block; }
 
-/* Горизонтальний слайдер */
 .volume-slider {
     -webkit-appearance: none;
-    width: 80px; /* Фіксована ширина для горизонтальності */
-    height: 4px;
+    width: 80px; height: 4px;
     background: rgba(255,255,255,0.3);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
+    border-radius: 2px; outline: none; cursor: pointer;
 }
-
 .volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #fff; cursor: pointer;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
@@ -271,15 +269,15 @@ ul { list-style: none; }
 .seek-bar::-webkit-slider-thumb {
     -webkit-appearance: none; width: 12px; height: 12px;
     border-radius: 50%; background: var(--accent-color);
-    cursor: pointer; margin-top: -3px; /* Вирівнювання по центру */
+    cursor: pointer; margin-top: -3px;
 }
 
 /* Інфо про відео */
 .video-info { text-align: center; margin-top: 20px; width: 280px; }
 .video-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
-.client-tag {
+.client-tag { 
     display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-    background: #222; color: var(--accent-color);
+    background: #222; color: var(--accent-color); 
     padding: 5px 12px; border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.1); letter-spacing: 1px;
 }
@@ -319,12 +317,26 @@ ul { list-style: none; }
 .social-links a:hover { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-color); }
 .copyright { font-size: 0.8rem; opacity: 0.4; }
 
-/* --- MEDIA QUERIES --- */
+/* --- MEDIA QUERIES (МОБІЛЬНА ВЕРСІЯ) --- */
 @media (max-width: 768px) {
-    .hero-container { flex-direction: column-reverse; text-align: center; gap: 40px;}
+    .hero-container { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 40px;
+        /* ВИПРАВЛЕННЯ 1: Більше відступу знизу для мобільного */
+        padding-bottom: 80px; 
+    }
+    
     .glitch-text { font-size: 2.5rem; }
     .features-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .phone-mockup { width: 100%; max-width: 300px; height: 550px; }
     .video-info { width: 100%; max-width: 300px; }
+
+    /* ВИПРАВЛЕННЯ 4: Ховаємо слайдер гучності на телефоні (iOS обмеження) */
+    .volume-slider { display: none; }
+    
+    /* Робимо кнопку звуку трішки більшою, бо слайдера немає */
+    .volume-container { padding: 10px; }
+    .mute-btn svg { width: 24px; height: 24px; }
 }
