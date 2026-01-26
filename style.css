@@ -10,8 +10,21 @@
     --font-body: 'Manrope', sans-serif;
 }
 
-* { 
-    margin: 0; padding: 0; box-sizing: border-box; 
+/* ОНОВЛЕННЯ: Прибираємо блакитне виділення при натисканні */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /* Ось ця магія прибирає блакитний фон при тапі на iPhone/Android */
+    -webkit-tap-highlight-color: transparent;
+
+    /* Це прибирає рамку фокусу (якщо з'являється при кліку) */
+    outline: none;
+}
+
+/* Додатково: прибираємо синє виділення саме для кнопок і посилань */
+button, a, input {
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
