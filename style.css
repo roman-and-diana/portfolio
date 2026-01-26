@@ -238,12 +238,23 @@ ul { list-style: none; }
 }
 
 /* CONTROLS OVERLAY */
+/* ВИПРАВЛЕННЯ: Прибираємо сірий фон на все відео */
 .video-controls {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 10;
     display: flex; flex-direction: column; justify-content: space-between;
-    opacity: 0; transition: opacity 0.3s;
-    background: rgba(0,0,0,0.3);
+
+    /* Прозорість керується через JS (показувати/ховати) */
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    /* ТУТ БУЛА ПОМИЛКА: background: rgba(0,0,0,0.3); */
+    /* Ставимо прозорий фон, щоб відео було чистим */
+    background: transparent;
+
+    /* Додаємо легку тінь тільки для елементів, щоб вони не губились на світлому фоні */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .phone-mockup:hover .video-controls,
 .phone-mockup.is-playing .video-controls { opacity: 1; }
@@ -309,8 +320,10 @@ ul { list-style: none; }
 
 /* BOTTOM BAR */
 .bottom-controls {
-    margin-top: auto; padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    margin-top: auto;
+    padding: 20px;
+    /* Градієнт тільки знизу: від чорного до прозорого */
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     cursor: default;
 }
 .control-row {
