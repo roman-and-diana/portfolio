@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2.2 КАТЕГОРІЇ (НОВЕ!)
     const tabsContainer = document.querySelector('.portfolio-tabs');
     if (tabsContainer) {
-        tabsContainer.innerHTML = categoriesData.map((cat, index) =>
+        tabsContainer.innerHTML = categoriesData.map(cat =>
             `<button class="tab-btn ${cat.active === 1 ? 'active' : ''}" data-filter="${cat.filter}">${cat.name}</button>`
         ).join('');
     }
@@ -231,23 +231,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
+    // Функція, яка ховає/показує відео
+    function filterItems(filterValue) {
+        portfolioItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            if (filterValue === 'all' || filterValue === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+                // Зупиняємо відео, якщо воно сховане
+                const hiddenVideo = item.querySelector('video');
+                if(hiddenVideo) hiddenVideo.pause();
+            }
+        });
+    }
+
+    // Навішуємо кліки на кнопки
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
             const filterValue = btn.getAttribute('data-filter');
-            portfolioItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                if (filterValue === 'all' || filterValue === category) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                    const hiddenVideo = item.querySelector('video');
-                    if(hiddenVideo) hiddenVideo.pause();
-                }
-            });
+            filterItems(filterValue); // Викликаємо функцію
         });
     });
+
+    // --- АВТОМАТИЧНИЙ ЗАПУСК ФІЛЬТРУ ПРИ СТАРТІ ---
+    // Знаходимо категорію, яка має active: 1
+    const initialActiveCategory = categoriesData.find(c => c.active === 1);
+    if (initialActiveCategory) {
+        filterItems(initialActiveCategory.filter);
+    } else {
+        // Якщо раптом нічого не вибрано, показуємо все
+        filterItems('all');
+    }
+
 
     // 3.2 ВІДЕО ПЛЕЄР (Без змін)
     const allMockups = document.querySelectorAll('.phone-mockup');
