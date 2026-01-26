@@ -12,7 +12,6 @@
 
 * { 
     margin: 0; padding: 0; box-sizing: border-box; 
-    /* ПРИБИРАЄМО СИНЮ ОБВОДКУ НА МОБІЛЬНОМУ */
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
@@ -42,7 +41,7 @@ ul { list-style: none; }
     text-align: center;
 }
 
-/* --- 3. HERO SECTION --- */
+/* --- 3. HERO SECTION & GLITCH --- */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -79,13 +78,6 @@ ul { list-style: none; }
     color: var(--accent-color);
     text-transform: uppercase;
 }
-.glitch-text {
-    font-family: var(--font-header);
-    font-size: 3.5rem;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 25px;
-}
 .hero-desc {
     font-size: 1.1rem; margin-bottom: 40px; opacity: 0.8; max-width: 450px;
 }
@@ -104,6 +96,44 @@ ul { list-style: none; }
     box-shadow: 0 0 20px rgba(255,255,255,0.4);
 }
 
+/* GLITCH EFFECT (CSS) */
+.glitch-text {
+    font-family: var(--font-header);
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    position: relative;
+    color: var(--text-color);
+}
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.8;
+}
+.glitch-text::before {
+    color: #ff00c1;
+    z-index: -1;
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+.glitch-text::after {
+    color: #00fff9;
+    z-index: -2;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+    100% { clip-path: inset(10% 0 50% 0); transform: translate(-2px, 2px); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+    20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+    100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); }
+}
+
 /* --- 4. FLOATING CTA --- */
 .floating-cta {
     position: fixed; bottom: 30px; right: 30px;
@@ -115,7 +145,7 @@ ul { list-style: none; }
 }
 .floating-cta:hover { transform: scale(1.05); }
 
-/* --- 5. MARQUEE (БРЕНДИ) --- */
+/* --- 5. MARQUEE --- */
 .marquee-section {
     background: var(--glass-bg); padding: 25px 0;
     overflow: hidden;
@@ -123,8 +153,7 @@ ul { list-style: none; }
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .marquee-content {
-    display: flex; gap: 60px; 
-    /* ПРИШВИДШЕНО ДО 12s */
+    display: flex; gap: 60px;
     animation: scroll 12s linear infinite;
 }
 .marquee-content span {
@@ -132,11 +161,12 @@ ul { list-style: none; }
     font-size: 1.4rem;
     text-transform: uppercase;
     color: rgba(255,255,255,0.8);
-    text-shadow: 0 0 10px rgba(255,255,255,0.1); 
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
+    white-space: nowrap;
 }
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* --- 6. WHY ME --- */
+/* --- 6. FEATURES --- */
 .features-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
 }
@@ -149,7 +179,7 @@ ul { list-style: none; }
     font-family: var(--font-header); font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;
 }
 
-/* --- 7. ПОРТФОЛІО --- */
+/* --- 7. PORTFOLIO TABS --- */
 .portfolio-tabs {
     display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;
 }
@@ -164,13 +194,14 @@ ul { list-style: none; }
     background: var(--text-color); color: var(--bg-color);
     border-color: var(--text-color); font-weight: 700;
 }
+
+/* --- 8. VIDEO GRID & MOCKUP --- */
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 50px; justify-items: center;
 }
 
-/* PHONE MOCKUP */
 .phone-mockup {
     position: relative;
     width: 280px; height: 500px;
@@ -179,7 +210,8 @@ ul { list-style: none; }
     overflow: hidden;
     background: #000;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    z-index: 1; 
+    z-index: 1;
+    cursor: pointer;
 }
 .phone-mockup::before {
     content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -192,21 +224,28 @@ ul { list-style: none; }
     width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
-/* --- CUSTOM VIDEO CONTROLS --- */
+/* CONTROLS OVERLAY */
 .video-controls {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 10;
     display: flex; flex-direction: column; justify-content: space-between;
     opacity: 0; transition: opacity 0.3s;
     background: rgba(0,0,0,0.3);
 }
-.phone-mockup:hover .video-controls, 
-.phone-mockup.is-playing .video-controls { /* Показуємо на мобільному, якщо грає */
-    opacity: 1; 
+.phone-mockup:hover .video-controls,
+.phone-mockup.is-playing .video-controls { opacity: 1; }
+
+/* AUTO HIDE CONTROLS */
+.phone-mockup.interface-hidden .bottom-controls,
+.phone-mockup.interface-hidden .center-play-btn {
+    opacity: 0; visibility: hidden; pointer-events: none;
+}
+.bottom-controls, .center-play-btn {
+    transition: opacity 0.5s ease, visibility 0.5s;
+    opacity: 1; visibility: visible;
 }
 
-/* Центральна кнопка */
+/* CENTER PLAY BUTTON */
 .center-play-btn {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
@@ -221,40 +260,38 @@ ul { list-style: none; }
     transform: translate(-50%, -50%) scale(1.1);
     background: rgba(255, 255, 255, 0.3);
 }
-.play-icon { font-size: 1.5rem; color: #fff; margin-left: 2px; }
+.play-icon { font-size: 1.5rem; color: #fff; margin-left: 2px; pointer-events: none;}
 .center-play-btn.paused .play-icon { margin-left: 0; font-weight: 900; font-size: 1.2rem; }
 
-/* Нижня панель */
+/* BOTTOM BAR */
 .bottom-controls {
     margin-top: auto; padding: 20px;
     background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    cursor: default;
 }
 .control-row {
     display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
 }
 
-/* Слайдер гучності */
+/* SOUND CONTROLS (Fixes applied here) */
 .volume-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     background: rgba(255,255,255,0.1);
     padding: 6px 12px;
     border-radius: 30px;
     backdrop-filter: blur(4px);
 }
-
-.mute-btn svg { width: 18px; height: 18px; fill: #fff; display: block; }
+.mute-btn { z-index: 10; position: relative; }
+.mute-btn svg { width: 18px; height: 18px; fill: #fff; display: block; pointer-events: none; }
 
 .volume-slider {
-    -webkit-appearance: none;
-    width: 80px; height: 4px;
+    -webkit-appearance: none; width: 80px; height: 4px;
     background: rgba(255,255,255,0.3);
     border-radius: 2px; outline: none; cursor: pointer;
+    z-index: 10; position: relative;
 }
 .volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 12px; height: 12px; border-radius: 50%;
+    -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
     background: #fff; cursor: pointer;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
@@ -272,17 +309,17 @@ ul { list-style: none; }
     cursor: pointer; margin-top: -3px;
 }
 
-/* Інфо про відео */
+/* INFO */
 .video-info { text-align: center; margin-top: 20px; width: 280px; }
 .video-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
-.client-tag { 
+.client-tag {
     display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-    background: #222; color: var(--accent-color); 
+    background: #222; color: var(--accent-color);
     padding: 5px 12px; border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.1); letter-spacing: 1px;
 }
 
-/* --- 8. ПОСЛУГИ --- */
+/* --- 9. SERVICES --- */
 .services-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
 }
@@ -307,7 +344,7 @@ ul { list-style: none; }
 }
 .arrow-icon { font-size: 1.2rem; color: var(--accent-color); }
 
-/* --- 9. FOOTER --- */
+/* --- 10. FOOTER --- */
 .footer {
     padding: 80px 0 40px; text-align: center; background: linear-gradient(to top, #111, transparent);
 }
@@ -317,42 +354,22 @@ ul { list-style: none; }
 .social-links a:hover { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-color); }
 .copyright { font-size: 0.8rem; opacity: 0.4; }
 
-/* --- MEDIA QUERIES (МОБІЛЬНА ВЕРСІЯ) --- */
+/* --- MEDIA QUERIES (MOBILE) --- */
 @media (max-width: 768px) {
-    .hero-container { 
-        flex-direction: column-reverse; 
-        text-align: center; 
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
         gap: 40px;
-        /* ВИПРАВЛЕННЯ 1: Більше відступу знизу для мобільного */
-        padding-bottom: 80px; 
+        padding-bottom: 80px;
     }
-    
     .glitch-text { font-size: 2.5rem; }
     .features-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .phone-mockup { width: 100%; max-width: 300px; height: 550px; }
     .video-info { width: 100%; max-width: 300px; }
 
-    /* ВИПРАВЛЕННЯ 4: Ховаємо слайдер гучності на телефоні (iOS обмеження) */
+    /* Сховуємо слайдер на мобільному (iOS fix) */
     .volume-slider { display: none; }
-    
-    /* Робимо кнопку звуку трішки більшою, бо слайдера немає */
     .volume-container { padding: 10px; }
     .mute-btn svg { width: 24px; height: 24px; }
-}
-
-/* Додаємо перехід для плавності */
-.bottom-controls,
-.center-play-btn {
-    transition: opacity 0.5s ease, visibility 0.5s;
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Цей клас ми будемо додавати через JS, коли треба сховати */
-.phone-mockup.interface-hidden .bottom-controls,
-.phone-mockup.interface-hidden .center-play-btn {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none; /* Щоб не можна було клікнути на невидиму кнопку */
 }
