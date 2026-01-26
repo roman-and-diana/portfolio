@@ -87,7 +87,11 @@
                     <video class="video-element" src="assets/bogenia_spf.mp4" poster="assets/bogenia_spf_poster.jpeg" preload="metadata" loop playsinline muted></video>
 
                     <div class="video-controls">
-                        <div class="center-play-btn paused"><span class="play-icon">||</span></div>
+                        <div class="center-play-btn paused">
+                            <span class="play-icon">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                            </span>
+                        </div>
                         <div class="bottom-controls">
                             <div class="control-row">
                                 <span style="font-size: 0.8rem; color: white; opacity: 0.8;">Promo</span>
@@ -112,7 +116,11 @@
                 <div class="phone-mockup">
                     <video class="video-element" src="assets/dental.mp4" preload="metadata" loop playsinline muted></video>
                     <div class="video-controls">
-                        <div class="center-play-btn paused"><span class="play-icon">||</span></div>
+                        <div class="center-play-btn paused">
+                            <span class="play-icon">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                            </span>
+                        </div>
                         <div class="bottom-controls">
                             <div class="control-row">
                                 <span style="font-size: 0.8rem; color: white;">Стоматологія</span>
@@ -137,7 +145,11 @@
                 <div class="phone-mockup">
                     <video class="video-element" src="assets/gerdan_jewelry_top.mp4" preload="metadata" loop playsinline muted></video>
                     <div class="video-controls">
-                        <div class="center-play-btn paused"><span class="play-icon">||</span></div>
+                        <div class="center-play-btn paused">
+                            <span class="play-icon">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                            </span>
+                        </div>
                         <div class="bottom-controls">
                             <div class="control-row">
                                 <span style="font-size: 0.8rem; color: white;">Vibe</span>
@@ -162,7 +174,11 @@
                 <div class="phone-mockup">
                     <video class="video-element" src="assets/bogenia_shampoo.mp4" preload="metadata" loop playsinline muted></video>
                     <div class="video-controls">
-                        <div class="center-play-btn paused"><span class="play-icon">||</span></div>
+                        <div class="center-play-btn paused">
+                            <span class="play-icon">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                            </span>
+                        </div>
                         <div class="bottom-controls">
                             <div class="control-row">
                                 <span style="font-size: 0.8rem; color: white;">Shampoo</span>
@@ -271,8 +287,14 @@
 
         // --- 2. ВІДЕО ПЛЕЄР ---
         const allMockups = document.querySelectorAll('.phone-mockup');
+
+        // SVG Іконки (Всі вектором!)
         const iconSoundOn = `<svg viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>`;
         const iconSoundOff = `<svg viewBox="0 0 24 24"><path d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z" /></svg>`;
+
+        // НОВІ ІКОНКИ PLAY/PAUSE (Замість тексту)
+        const iconPlay = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>`;
+        const iconPause = `<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>`;
 
         function muteAllExcept(currentVideo) {
             allMockups.forEach(mockup => {
@@ -288,11 +310,11 @@
                     if(muteBtn) muteBtn.innerHTML = iconSoundOff;
                     if(volumeSlider) volumeSlider.value = 0;
 
+                    // Скидаємо іконку на Play
                     const playIcon = mockup.querySelector('.play-icon');
                     const playBtnBlock = mockup.querySelector('.center-play-btn');
                     if(playIcon) {
-                        playIcon.textContent = '▶';
-                        playIcon.style.marginLeft = '4px';
+                        playIcon.innerHTML = iconPlay;
                         playBtnBlock.classList.remove('paused');
                     }
                     mockup.classList.remove('is-playing');
@@ -317,13 +339,11 @@
             function updateUI() {
                 // Play/Pause
                 if (video.paused) {
-                    playIcon.textContent = '▶';
-                    playIcon.style.marginLeft = '4px';
+                    playIcon.innerHTML = iconPlay; // ВСТАВЛЯЄМО SVG
                     playBtnBlock.classList.remove('paused');
                     mockup.classList.remove('is-playing');
                 } else {
-                    playIcon.textContent = '||';
-                    playIcon.style.marginLeft = '0';
+                    playIcon.innerHTML = iconPause; // ВСТАВЛЯЄМО SVG
                     playBtnBlock.classList.add('paused');
                     mockup.classList.add('is-playing');
                 }
@@ -423,18 +443,31 @@
                 });
             }
 
-            // 4. Phone Click (Фон)
+            // 4. Phone Click (Фон - ТЕПЕР ПРАЦЮЄ ЯК PLAY/PAUSE)
             mockup.addEventListener('click', (e) => {
+                // Якщо клік був по кнопці звуку або слайдеру - ігноруємо
                 if (muteBtn.contains(e.target) || (volumeSlider && volumeSlider.contains(e.target))) return;
 
-                if (!e.target.closest('.bottom-controls') && !e.target.closest('.center-play-btn')) {
-                    clearTimeout(returnToPosterTimeout); // Скасовуємо таймер
-                    muteAllExcept(video);
-                    video.muted = false;
-                    video.volume = 1;
-                    if(volumeSlider) volumeSlider.value = 1;
-                    isManuallyMuted = false;
-                    if (video.paused) video.play();
+                // Якщо клік не по нижній панелі керування
+                if (!e.target.closest('.bottom-controls')) {
+
+                    // 1. Скасовуємо таймер повернення постера
+                    clearTimeout(returnToPosterTimeout);
+
+                    // 2. Логіка перемикання (Toggle)
+                    if (video.paused) {
+                        // --- ЯКЩО СТОЯЛО: ВМИКАЄМО ---
+                        muteAllExcept(video);
+                        video.muted = false;
+                        video.volume = 1;
+                        if(volumeSlider) volumeSlider.value = 1;
+                        isManuallyMuted = false;
+                        video.play();
+                    } else {
+                        // --- ЯКЩО ГРАЛО: СТАВИМО НА ПАУЗУ ---
+                        video.pause();
+                    }
+
                     updateUI();
                 }
             });

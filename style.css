@@ -301,21 +301,20 @@ ul { list-style: none; }
     transform: translate(-50%, -50%) scale(0.9);
 }
 
-/* Стилізація самої іконки (трикутника) */
+/* --- СТИЛІ ДЛЯ SVG ІКОНКИ PLAY/PAUSE --- */
 .play-icon {
-    font-size: 3rem; /* Робимо іконку більшою, бо фону більше немає */
-    color: #fff;
-    margin-left: 5px; /* Візуальна корекція центру */
-    pointer-events: none;
-
-    /* Додаємо тінь, щоб іконку було видно навіть на білому відео */
-    filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+    width: 40px;
+    height: 40px;
+    display: block;
+    fill: #fff; /* Робить іконку білою */
+    pointer-events: none; /* Щоб клік проходив крізь неї */
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Тінь */
 }
 
-/* Коли відео на паузі (іконка ||) */
+/* Коли пауза, можна трохи змінити розмір, якщо треба */
 .center-play-btn.paused .play-icon {
-    margin-left: 0;
-    font-size: 2.5rem;
+    width: 35px;
+    height: 35px;
 }
 
 /* BOTTOM BAR */
