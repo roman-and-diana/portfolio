@@ -258,33 +258,54 @@ ul { list-style: none; }
     opacity: 1; visibility: visible;
 }
 
-/* CENTER PLAY BUTTON */
+/* --- ЦЕНТРАЛЬНА КНОПКА (Оновлено: тільки іконка) --- */
 .center-play-btn {
-    position: absolute; top: 50%; left: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px; height: 60px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: transform 0.2s, background 0.2s;
 
-    /* Робимо ідеальне коло */
-    border-radius: 50%;
+    /* Розміри області кліку (щоб пальцем було легко попасти) */
+    width: 80px;
+    height: 80px;
 
-    /* Робимо фон трішки прозорішим і менш помітним */
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(3px); /* Легше розмиття */
+    /* Центрування іконки */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 
-    /* Тонка біла рамка додасть "преміальності" */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* ПРИБИРАЄМО ФОН ПОВНІСТЮ */
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+
+    /* Прибираємо синю підсвітку при кліку */
+    -webkit-tap-highlight-color: transparent;
 }
-.center-play-btn:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-    background: rgba(255, 255, 255, 0.3);
+
+/* Ефект при натисканні (трохи зменшується) */
+.center-play-btn:active {
+    transform: translate(-50%, -50%) scale(0.9);
 }
-.play-icon { font-size: 1.5rem; color: #fff; margin-left: 2px; pointer-events: none;}
-.center-play-btn.paused .play-icon { margin-left: 0; font-weight: 900; font-size: 1.2rem; }
+
+/* Стилізація самої іконки (трикутника) */
+.play-icon {
+    font-size: 3rem; /* Робимо іконку більшою, бо фону більше немає */
+    color: #fff;
+    margin-left: 5px; /* Візуальна корекція центру */
+    pointer-events: none;
+
+    /* Додаємо тінь, щоб іконку було видно навіть на білому відео */
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+}
+
+/* Коли відео на паузі (іконка ||) */
+.center-play-btn.paused .play-icon {
+    margin-left: 0;
+    font-size: 2.5rem;
+}
 
 /* BOTTOM BAR */
 .bottom-controls {
