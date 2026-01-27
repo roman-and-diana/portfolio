@@ -1,5 +1,5 @@
 /* =========================================
-   PORTFOLIO SECTION
+   PORTFOLIO SECTION - BENTO BOX STYLE
    ========================================= */
 .portfolio-tabs {
     display: flex;
@@ -30,37 +30,50 @@
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
     justify-items: center;
+    justify-content: center;
+}
+.portfolio-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
+/* Modern Bento Box Video Card */
 .phone-mockup {
     position: relative;
-    width: 280px;
-    height: 500px;
-    border: 10px solid var(--phone-border);
-    border-radius: var(--radius-large);
+    width: 320px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
     overflow: hidden;
-    background: #000;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    z-index: 1;
     cursor: pointer;
     contain: layout style paint;
+    transition: transform var(--transition-normal),
+                border-color var(--transition-normal),
+                box-shadow var(--transition-normal);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.phone-mockup::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 25px;
-    background: var(--phone-border);
-    border-bottom-left-radius: var(--radius-small);
-    border-bottom-right-radius: var(--radius-small);
-    z-index: 20;
+.phone-mockup:hover {
+    transform: translateY(-5px);
+    border-color: rgba(123, 44, 191, 0.5);
+    box-shadow: 0 12px 48px rgba(123, 44, 191, 0.3);
+}
+
+/* Video container inside card */
+.video-wrapper {
+    position: relative;
+    width: calc(100% - 20px);
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 20px;
+    margin: 10px auto;
+    background: #000;
 }
 
 .video-element {
@@ -68,6 +81,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 20px;
 }
 
 .video-controls {
@@ -110,36 +124,46 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
+    transition: transform var(--transition-normal);
+}
+
+.center-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 .center-play-btn:active {
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.95);
 }
 
 .play-icon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     display: block;
     fill: #fff;
     pointer-events: none;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    filter: none;
 }
 
 .center-play-btn.paused .play-icon {
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
 }
 
 .bottom-controls {
     margin-top: auto;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 15px 18px 18px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .control-row {
@@ -153,16 +177,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 14px;
     border-radius: 30px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background var(--transition-normal);
+}
+
+.volume-container:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .mute-btn svg {
     width: 18px;
     height: 18px;
-    fill: #fff;
+    fill: var(--accent-color);
     display: block;
 }
 
@@ -170,7 +201,7 @@
     -webkit-appearance: none;
     width: 80px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 2px;
 }
 
@@ -179,16 +210,29 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--accent-color);
+}
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent-color);
+}
+.volume-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .seek-bar {
     -webkit-appearance: none;
     width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
     transition: height var(--transition-fast);
+    cursor: pointer;
 }
 
 .seek-bar:hover {
@@ -197,44 +241,110 @@
 
 .seek-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background: var(--accent-color);
-    margin-top: -3px;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
 }
 
+.seek-bar::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+.seek-bar::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent-color);
+}
+.seek-bar::-moz-range-track {
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Category badge at top of card */
+.category-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 15;
+}
+
+/* Video info at bottom of card */
 .video-info {
-    text-align: center;
-    margin-top: 20px;
-    width: 280px;
+    padding: 15px 20px 20px;
+    width: 100%;
 }
 
 .video-info h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-bottom: 8px;
     color: #fff;
+    line-height: 1.3;
 }
 
 .client-tag {
     display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
-    background: var(--glass-bg);
-    color: var(--accent-color);
-    padding: 5px 12px;
-    border-radius: var(--radius-medium);
-    border: 1px solid var(--glass-border);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    .phone-mockup,
-    .video-info {
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .phone-mockup {
         width: 100%;
-        max-width: 300px;
+        max-width: 360px;
+    }
+
+    .video-wrapper {
+        margin: 8px;
+        border-radius: 18px;
+        width: calc(100% - 16px);
+    }
+
+    .video-element {
+        border-radius: 18px;
+    }
+
+    .category-badge {
+        top: 15px;
+        left: 15px;
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+
+    .video-info {
+        padding: 12px 15px 15px;
+    }
+
+    .video-info h4 {
+        font-size: 0.95rem;
     }
 
     .volume-slider {
@@ -242,25 +352,34 @@
     }
 
     .volume-container {
-        padding: 10px;
+        padding: 8px 12px;
     }
 
     .mute-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .center-play-btn {
+        width: 60px;
+        height: 60px;
+    }
+
+    .play-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .center-play-btn.paused .play-icon {
         width: 24px;
         height: 24px;
     }
 
-    .center-play-btn {
-        background: transparent;
-        backdrop-filter: none;
-        border: none;
-        box-shadow: none;
-        width: auto;
-        height: auto;
+    .bottom-controls {
+        padding: 12px 15px 15px;
     }
 
-    .center-play-btn .play-icon {
-        font-size: 3.5rem;
-        margin: 0;
+    .seek-bar {
+        height: 4px;
     }
 }
