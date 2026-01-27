@@ -191,6 +191,8 @@
     .hero-image-wrapper {
         position: relative;
         will-change: auto;
+        max-height: 500px;
+        align-items: flex-start;
     }
 
     .hero-img {
@@ -198,6 +200,10 @@
         position: relative;
         transform: none !important;
         will-change: auto;
-        max-height: 60vh;
+        height: 500px;
+        width: auto;
+        max-width: 100%;
+        object-fit: cover;
+        object-position: center top;
     }
 }
