@@ -100,8 +100,13 @@
 .hero-desc {
     font-size: 1.1rem;
     margin-bottom: 40px;
-    opacity: 0.8;
+    opacity: 0.9;
     max-width: 450px;
+}
+
+.hero-desc strong {
+    color: #fff;
+    font-weight: 700;
 }
 
 .btn-primary {
