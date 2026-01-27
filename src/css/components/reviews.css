@@ -1,0 +1,173 @@
+/* =========================================
+   REVIEWS SECTION
+   ========================================= */
+.reviews-wrapper-relative {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.reviews-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    align-items: start;
+    padding: 20px 5px;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.reviews-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-arrow {
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    z-index: 5;
+    flex-shrink: 0;
+    fill: #fff;
+}
+
+.slider-arrow:hover {
+    background: var(--text-color);
+    fill: var(--bg-color);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.slider-arrow svg {
+    width: 28px;
+    height: 28px;
+}
+
+.prev-arrow {
+    margin-right: 15px;
+}
+
+.next-arrow {
+    margin-left: 15px;
+}
+
+.review-card {
+    flex: 0 0 400px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-medium);
+    padding: 25px 15px;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-card.instagram {
+    border-top: 2px solid #E1306C;
+}
+
+.review-card.telegram {
+    border-top: 2px solid #0088cc;
+}
+
+.review-card.tiktok {
+    border-top: 2px solid #00f2ea;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.brand-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.platform-name {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.platform-icon {
+    width: 32px;
+    height: 32px;
+    opacity: 0.9;
+}
+
+.instagram .platform-icon {
+    fill: #E1306C;
+}
+
+.telegram .platform-icon {
+    fill: #0088cc;
+}
+
+.tiktok .platform-icon {
+    fill: #00f2ea;
+}
+
+.review-image-container {
+    width: 100%;
+    border-radius: var(--radius-small);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.review-img {
+    width: 100%;
+    display: block;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .slider-arrow {
+        display: none;
+    }
+
+    .reviews-slider {
+        padding: 20px 20px;
+        gap: 15px;
+    }
+
+    .review-card {
+        flex: 0 0 90%;
+        padding: 20px 12px;
+        height: auto;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
