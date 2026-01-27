@@ -558,8 +558,9 @@
    ========================================= */
 .footer {
     padding: 60px 0 40px;
+    padding-bottom: env(safe-area-inset-bottom, 40px);
     text-align: center;
-    background: var(--bg-color);
+    background: transparent;
     position: relative;
     z-index: 1;
 }
