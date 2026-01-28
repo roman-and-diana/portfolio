@@ -29,6 +29,12 @@
     "title": "Plot-Video | Догляд за волоссям",
     "brand": "Bogenia"
   },
+  {
+    "folder": "bogenia_spf_2",
+    "category": "plot",
+    "title": "Plot-Video | SPF крем",
+    "brand": "Bogenia"
+  },
   
   
   {
@@ -97,6 +103,18 @@
     "folder": "lifestyle_clothes",
     "category": "fashion",
     "title": "Style-Video | Показ різних луків",
+    "brand": "Lifestyle"
+  },
+  {
+    "folder": "lifestyle_clothes_yellow",
+    "category": "fashion",
+    "title": "Style-Video | Костюм",
+    "brand": "Lifestyle"
+  },
+  {
+    "folder": "lifestyle_clothes_wawel",
+    "category": "fashion",
+    "title": "Style-Video | Монтаж та показ образу",
     "brand": "Lifestyle"
   },
   {
