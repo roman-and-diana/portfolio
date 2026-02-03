@@ -1,10 +1,10 @@
 [
   {
     "type": "instagram",
-    "brand": "Bogenia",
+    "brand": "Gerdan Jewelry",
     "platform": "Instagram",
-    "logo": "assets/logos/logo_bogenia.png",
-    "image": "assets/reviews/review_bogenia.png"
+    "logo": "assets/logos/logo_gerdan.png",
+    "image": "assets/reviews/review_gerdan.png"
   },
   {
     "type": "instagram",
@@ -19,13 +19,6 @@
     "platform": "Instagram",
     "logo": "assets/logos/logo_whiteandwhite.png",
     "image": "assets/reviews/review_whiteandwhite.png"
-  },
-  {
-    "type": "instagram",
-    "brand": "Gerdan Jewelry",
-    "platform": "Instagram",
-    "logo": "assets/logos/logo_gerdan.png",
-    "image": "assets/reviews/review_gerdan.png"
   },
   {
     "type": "instagram",
