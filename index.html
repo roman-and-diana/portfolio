@@ -17,9 +17,16 @@
           rel="stylesheet">
 
     <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/components/faq.css">
 
     <!-- Preload critical assets -->
     <link rel="preload" href="assets/me.png" as="image" type="image/png">
+
+    <!-- Favicon and touch icons -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <!-- PNG fallback / higher-quality square icon -->
+    <link rel="icon" href="assets/me.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="assets/me.png">
 </head>
 <body>
 
@@ -258,11 +265,70 @@
 
 <section id="faq" class="section">
     <div class="container">
-        <h2 class="section-title">Часті питання</h2>
+        <h2 class="section-title">Часті запитання</h2>
         <div class="faq-list">
             <details class="faq-item">
                 <summary>Скільки коштує одне відео?</summary>
-                <p>UGC відео від 1000 грн, AI креатив від 1500 грн, пакети від 4000 грн. Остаточна вартість залежить від складності та кількості відео.</p>
+                <div class="pricing-list">
+                    <div class="pricing-items">
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                    <path d="M7 2h10v2H7zm0 18h10v2H7zm-2-4h2v4H5zm14 0h2v4h-2zM3 8h18v8H3z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="pricing-item-content">
+                                <div class="pricing-item-title">1. UGC огляд на продукт (розпаковка) — від 1000 грн</div>
+                                <div class="pricing-item-desc">Коротке динамічне відео: розпаковка, перші враження і демонстрація ключових характеристик.</div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="pricing-item-content">
+                                <div class="pricing-item-title">2. UGC сюжетне відео — від 1500 грн</div>
+                                <div class="pricing-item-desc">Сюжетна історія, режисура, прості переходи і монтаж під трендову музику.</div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="pricing-item-content">
+                                <div class="pricing-item-title">3. AI Креатив — від 1500 грн</div>
+                                <div class="pricing-item-desc">Ефекти з допомогою AI: заміна фону, генерація переходів, AI-еталони. Підходить для wow-ефекту.</div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 9.5c0 .83-.67 1.5-1.5 1.5S11 13.33 11 12.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5zm5 0c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5zM8.5 12.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="pricing-item-content">
+                                <div class="pricing-item-title">4. Повноцінний пакет — від 4000 грн</div>
+                                <div class="pricing-item-desc">Пакетна пропозиція: сценарій, зйомка, монтаж, підбір звуку і 2 раунди правок. Оптимально для комплексної кампанії.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-note">
+                        <div class="pricing-note-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="pricing-note-text">Остаточна вартість залежить від складності, тривалості і кількості відео, а також додаткових запитів (наприклад, локації, реквізит, додаткові правки). Для точного кошторису — напишіть мені і я підрахую вартість під ваш запит.</div>
+                    </div>
+                </div>
             </details>
             <details class="faq-item">
                 <summary>Чи надаєте ви сценарії?</summary>
